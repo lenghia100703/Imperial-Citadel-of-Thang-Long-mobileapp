@@ -2,28 +2,25 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/loginbkg4"
-    tools:context=".MainActivity">
+    android:background="@color/floral_white">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        android:layout_margin="20dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/floral_white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/custom_edittext">
+            android:padding="24dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,7 +40,7 @@
                 android:layout_marginTop="40dp"
                 android:padding="8dp"
                 android:hint="Username"
-                android:drawableLeft="@drawable/account"
+                android:drawableStart="@drawable/account"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
 
@@ -56,10 +53,20 @@
                 android:inputType="textPassword"
                 android:padding="8dp"
                 android:hint="Password"
-                android:drawableLeft="@drawable/lock"
+                android:drawableStart="@drawable/lock"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
 
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Quên mật khẩu?"
+                android:textColor="@color/purple"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -70,7 +77,75 @@
                 android:backgroundTint="@color/purple"
                 app:cornerRadius = "20dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp">
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/light_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Or login with"
+                    android:textColor="@color/light_gray"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/light_gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp">
+                <Button
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Google"
+                    android:drawableLeft="@drawable/google"
+                    android:id="@+id/googleButton"
+                    android:backgroundTint="@color/purple"
+                    android:layout_marginEnd="15dp"/>
+                <Button
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook"
+                    android:drawableLeft="@drawable/facebook"
+                    android:id="@+id/facebookButton"
+                    android:backgroundTint="@color/purple"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bạn không có tài khoản?" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng ký ngay!"
+                    android:textStyle="bold"
+                    android:layout_marginStart="5dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/register"/>
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
