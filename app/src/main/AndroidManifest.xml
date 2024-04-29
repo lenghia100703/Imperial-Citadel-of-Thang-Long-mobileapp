@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.home.LoginActivity" />
+        <activity android:name=".presentation.home.RegisterActivity" />
     </application>
 
 </manifest>

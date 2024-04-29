@@ -8,7 +8,7 @@ import com.example.mobileappui.MainActivity
 import com.example.mobileappui.R
 
 class SplashActivity: AppCompatActivity() {
-    override  fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({

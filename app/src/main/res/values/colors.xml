@@ -2,8 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="purple">#8692f7</color>
-    <color name="yellow">#994C00</color>
+
+    <color name="yellow">#c99c34</color>
     <color name="floral_white">#FFFCF2</color>
     <color name="light_gray">#AAA9A9</color>
+    <color name="dark_yellow">#786b2e</color>
+    <color name="dark_brown">#5E4934</color>
+    <color name="rosewood">#690911</color>
 </resources>

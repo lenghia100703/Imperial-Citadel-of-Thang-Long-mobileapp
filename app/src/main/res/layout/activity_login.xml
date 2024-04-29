@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -25,37 +26,36 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:id="@+id/loginText"
                 android:textSize="36sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textColor="@color/purple"/>
+                android:textColor="@color/dark_yellow"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/username"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/edittext_login"
                 android:layout_marginTop="40dp"
-                android:padding="8dp"
+                android:paddingStart="20dp"
                 android:hint="Username"
-                android:drawableStart="@drawable/account"
                 android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                tools:ignore="RtlSymmetry"
+                />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/password"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/edittext_login"
                 android:layout_marginTop="20dp"
                 android:inputType="textPassword"
-                android:padding="8dp"
+                android:paddingStart="20dp"
                 android:hint="Password"
-                android:drawableStart="@drawable/lock"
                 android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/forgot_password"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="Quên mật khẩu?"
-                android:textColor="@color/purple"
+                android:textColor="@color/dark_yellow"
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:focusable="true"/>
@@ -74,7 +74,7 @@
                 android:id="@+id/loginButton"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/dark_yellow"
                 app:cornerRadius = "20dp"/>
 
             <LinearLayout
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="Or login with"
+                    android:text="Hoặc đăng nhập với"
                     android:textColor="@color/light_gray"/>
 
                 <View
@@ -115,17 +115,17 @@
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Google"
-                    android:drawableLeft="@drawable/google"
+                    android:drawableLeft="@drawable/ic_google_login"
                     android:id="@+id/googleButton"
-                    android:backgroundTint="@color/purple"
+                    android:backgroundTint="@color/dark_yellow"
                     android:layout_marginEnd="15dp"/>
                 <Button
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Facebook"
-                    android:drawableLeft="@drawable/facebook"
+                    android:drawableLeft="@drawable/ic_fb_login"
                     android:id="@+id/facebookButton"
-                    android:backgroundTint="@color/purple"
+                    android:backgroundTint="@color/dark_yellow"
                     />
             </LinearLayout>
             <LinearLayout
@@ -135,11 +135,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bạn không có tài khoản?" />
+                    android:text="Bạn không có tài khoản?"
+                    android:textColor="@color/dark_yellow"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Đăng ký ngay!"
+                    android:textColor="@color/dark_yellow"
                     android:textStyle="bold"
                     android:layout_marginStart="5dp"
                     android:clickable="true"
