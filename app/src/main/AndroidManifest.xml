@@ -31,6 +31,7 @@
         </activity>
         <activity android:name=".presentation.home.LoginActivity" />
         <activity android:name=".presentation.home.RegisterActivity" />
+        <activity android:name=".presentation.home.HomeScreen" />
     </application>
 
 </manifest>
