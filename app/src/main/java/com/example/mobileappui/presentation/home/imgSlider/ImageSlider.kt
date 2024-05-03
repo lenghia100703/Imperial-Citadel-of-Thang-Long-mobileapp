@@ -84,7 +84,7 @@ class ImageSlider: Fragment() {
         imageList = ArrayList()
         imageList.add(R.drawable.doanmon)
         imageList.add(R.drawable.doco)
-        imageList.add(R.drawable.thanh)
+        imageList.add(R.drawable.hoangthanh)
         adapter = ImageAdapter(imageList, viewPager2)
         viewPager2.adapter = adapter
         viewPager2.offscreenPageLimit = 3

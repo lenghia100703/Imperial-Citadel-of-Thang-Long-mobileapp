@@ -13,7 +13,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -24,9 +23,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import com.example.mobileappui.route.Account
+import com.example.mobileappui.route.BookTicket
+import com.example.mobileappui.route.Home
+import com.example.mobileappui.route.Menu
 import com.example.mobileappui.R
+import com.example.mobileappui.route.Search
 import com.example.mobileappui.colorButtons.BellColorButton
 import com.example.mobileappui.colorButtons.ButtonBackground
+import com.example.mobileappui.databinding.ActivityMainBinding
 import com.exyte.animatednavbar.AnimatedNavigationBar
 import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
 import com.exyte.animatednavbar.animation.indendshape.Height
@@ -34,58 +39,71 @@ import com.exyte.animatednavbar.items.dropletbutton.DropletButton
 
 
 class NavBar : Fragment() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        replaceFragment(Home())
         return ComposeView(requireContext()).apply {
             setContent {
-                DropletButtonNavBar()
+
+                binding = ActivityMainBinding.inflate(layoutInflater)
+
+                //DropletButtonNavBar()
+                var selectedItem by remember { mutableIntStateOf(2) }
+                val darkYellow = Color(0xFF786b2e)
+                AnimatedNavigationBar(
+                    modifier = Modifier
+                        .padding(top = 50.dp)
+                        .height(85.dp),
+                    selectedIndex = selectedItem,
+                    ballColor = darkYellow,
+
+                    ballAnimation = Parabolic(tween(Duration, easing = LinearOutSlowInEasing)),
+                    indentAnimation = Height(
+                        indentWidth = 56.dp,
+                        indentHeight = 15.dp,
+                        animationSpec = tween(
+                            DoubleDuration,
+                            easing = { OvershootInterpolator().getInterpolation(it) })
+                    )
+                ) {
+
+                    dropletButtons.forEachIndexed { index, it ->
+                        DropletButton(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(darkYellow),
+                            isSelected = selectedItem == index,
+                            onClick = { selectedItem = index
+                                //chuyển hướng
+                                when(dropletButtons[selectedItem].description) {
+                                    "Person" -> replaceFragment(Account())
+                                    "Search" -> replaceFragment(Search())
+                                    "Home"   -> replaceFragment(Home())
+                                    "Book ticket" -> replaceFragment(BookTicket())
+                                    "Menu" -> replaceFragment(Menu())
+                                    else ->{
+                                        println("Nothing")
+                                    }
+                                }
+                            },
+                            icon = it.icon,
+                            dropletColor = Color.White,
+                            animationSpec = tween(durationMillis = Duration, easing = LinearEasing)
+                        )
+                    }
+                }
             }
         }
     }
-}
-@Composable
-fun DropletButtonNavBar() {
-    var selectedItem by remember { mutableIntStateOf(0) }
-    val darkYellow = Color(0xFF786b2e)
-    AnimatedNavigationBar(
-        modifier = Modifier
-            .padding(top = 50.dp)
-            .height(85.dp),
-        selectedIndex = selectedItem,
-        ballColor = darkYellow,
-
-        ballAnimation = Parabolic(tween(Duration, easing = LinearOutSlowInEasing)),
-        indentAnimation = Height(
-            indentWidth = 56.dp,
-            indentHeight = 15.dp,
-            animationSpec = tween(
-                DoubleDuration,
-                easing = { OvershootInterpolator().getInterpolation(it) })
-        )
-    ) {
-        dropletButtons.forEachIndexed { index, it ->
-            DropletButton(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(darkYellow),
-                isSelected = selectedItem == index,
-                onClick = { selectedItem = index
-                          when(selectedItem) {
-                              0 -> println("Person")
-                              1 -> println("Search")
-                              2 -> println("Home")
-                              3 -> println("Book ticket")
-                              4 -> println("Menu")
-                            }
-                          },
-                icon = it.icon,
-                dropletColor = Color.White,
-                animationSpec = tween(durationMillis = Duration, easing = LinearEasing)
-            )
-        }
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }
 
