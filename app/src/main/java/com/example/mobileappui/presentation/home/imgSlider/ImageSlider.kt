@@ -34,7 +34,7 @@ class ImageSlider: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
-        setUpTransfromer()
+        setUpTransformer()
 
         indicatorContainer = view.findViewById(R.id.indicatorContainer)
         for (i in imageList.indices) {
@@ -48,7 +48,8 @@ class ImageSlider: Fragment() {
                 super.onPageSelected(position)
                 for (i in 0 until indicatorContainer.childCount) {
                     val imageView = indicatorContainer.getChildAt(i) as ImageView
-                    imageView.setImageResource(if (i == position) R.drawable.indicator_active else R.drawable.indicator_inactive)
+                    val index = if (position >= indicatorContainer.childCount) position % indicatorContainer.childCount else position
+                    imageView.setImageResource(if (i == index) R.drawable.indicator_active else R.drawable.indicator_inactive)
                 }
                 hander.removeCallbacks(runnable)
                 hander.postDelayed(runnable, 3000)
@@ -68,7 +69,7 @@ class ImageSlider: Fragment() {
         viewPager2.currentItem = viewPager2.currentItem + 1
     }
 
-    private fun setUpTransfromer() {
+    private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
         transformer.addTransformer { page, position ->
@@ -81,11 +82,9 @@ class ImageSlider: Fragment() {
         viewPager2 = requireView().findViewById(R.id.viewPager2)
         hander = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
-        imageList.add(R.drawable.img)
-        imageList.add(R.drawable.img)
-        imageList.add(R.drawable.img)
-        imageList.add(R.drawable.img)
-        imageList.add(R.drawable.img)
+        imageList.add(R.drawable.doanmon)
+        imageList.add(R.drawable.doco)
+        imageList.add(R.drawable.thanh)
         adapter = ImageAdapter(imageList, viewPager2)
         viewPager2.adapter = adapter
         viewPager2.offscreenPageLimit = 3

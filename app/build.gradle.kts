@@ -51,7 +51,8 @@ android {
 }
 
 dependencies {
-    
+
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -86,5 +87,5 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
 
 
-
+    implementation("com.exyte:animated-navigation-bar:1.0.0")
 }
