@@ -1,6 +1,9 @@
 package com.example.mobileappui.presentation.home
 
+
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +43,7 @@ import com.exyte.animatednavbar.items.dropletbutton.DropletButton
 
 class NavBar : Fragment() {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,13 +82,37 @@ class NavBar : Fragment() {
                                 .background(darkYellow),
                             isSelected = selectedItem == index,
                             onClick = { selectedItem = index
+
+
                                 //chuyển hướng
                                 when(dropletButtons[selectedItem].description) {
-                                    "Person" -> replaceFragment(Account())
-                                    "Search" -> replaceFragment(Search())
-                                    "Home"   -> replaceFragment(Home())
-                                    "Book ticket" -> replaceFragment(BookTicket())
-                                    "Menu" -> replaceFragment(Menu())
+                                    "Person" -> {
+                                        replaceFragment(Account())
+                                        //intent.putExtra("openMenu", "close")
+                                    }
+                                    "Search" -> {
+                                        replaceFragment(Search())
+                                        //intent.putExtra("openMenu", "close")
+                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
+                                    }
+                                    "Home"   -> {
+                                        replaceFragment(Home())
+                                        //intent.putExtra("openMenu", "close")
+                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
+                                    }
+                                    "Book ticket" -> {
+                                        replaceFragment(BookTicket())
+                                        //intent.putExtra("openMenu", "close")
+                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
+                                    }
+                                    "Menu" -> {
+                                        val sendData = Intent(activity, MainScreen::class.java).apply {
+                                            putExtra("openMenu", "open")
+                                            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                                        }
+                                        Log.d("NavBar", "Putting 'openMenu' into Intent")
+                                        startActivity(sendData)
+                                    }
                                     else ->{
                                         println("Nothing")
                                     }
