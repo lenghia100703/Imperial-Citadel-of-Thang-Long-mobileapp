@@ -1,15 +1,18 @@
 package com.example.mobileappui.presentation.home
 
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+
+import android.os.Bundle
+
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileappui.R
 
 class MainScreen: AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen)
@@ -29,6 +32,7 @@ class MainScreen: AppCompatActivity() {
         } else {
             menuView.visibility = View.GONE
         }
+
     }
 
 }

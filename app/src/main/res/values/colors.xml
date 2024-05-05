@@ -9,4 +9,5 @@
     <color name="dark_yellow">#786b2e</color>
     <color name="dark_brown">#5E4934</color>
     <color name="rosewood">#690911</color>
+    <color name="transparent">#00000000</color>
 </resources>

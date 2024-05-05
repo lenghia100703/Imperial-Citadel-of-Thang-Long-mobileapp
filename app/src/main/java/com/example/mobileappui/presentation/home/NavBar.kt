@@ -1,5 +1,6 @@
 package com.example.mobileappui.presentation.home
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -82,6 +83,7 @@ class NavBar : Fragment() {
                             isSelected = selectedItem == index,
                             onClick = { selectedItem = index
 
+
                                 //chuyển hướng
                                 when(dropletButtons[selectedItem].description) {
                                     "Person" -> {
@@ -115,7 +117,6 @@ class NavBar : Fragment() {
                                         println("Nothing")
                                     }
                                 }
-
                             },
                             icon = it.icon,
                             dropletColor = Color.White,

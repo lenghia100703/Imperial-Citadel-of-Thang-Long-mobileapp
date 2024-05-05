@@ -31,6 +31,7 @@
         app:layout_constraintEnd_toEndOf="@id/frame_layout"
         app:layout_constraintStart_toStartOf="@id/frame_layout"
         app:layout_constraintTop_toTopOf="@id/frame_layout" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navBarFragment"
         android:name="com.example.mobileappui.presentation.home.NavBar"
