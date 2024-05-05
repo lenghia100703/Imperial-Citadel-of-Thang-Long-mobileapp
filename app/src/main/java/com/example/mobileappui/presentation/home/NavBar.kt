@@ -88,6 +88,7 @@ class NavBar : Fragment() {
                                 when(dropletButtons[selectedItem].description) {
                                     "Person" -> {
                                         replaceFragment(Account())
+
                                         //intent.putExtra("openMenu", "close")
                                     }
                                     "Search" -> {
@@ -106,17 +107,22 @@ class NavBar : Fragment() {
                                         //Log.d("NavBar", "Putting 'openMenu' into Intent")
                                     }
                                     "Menu" -> {
-                                        val sendData = Intent(activity, MainScreen::class.java).apply {
-                                            putExtra("openMenu", "open")
-                                            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-                                        }
-                                        Log.d("NavBar", "Putting 'openMenu' into Intent")
-                                        startActivity(sendData)
+
                                     }
                                     else ->{
                                         println("Nothing")
                                     }
                                 }
+                                val sendData = Intent(activity, MainScreen::class.java).apply {
+                                    if (dropletButtons[selectedItem].description == "Menu") {
+                                        putExtra("openMenu", true)
+                                    } else {
+                                        putExtra("openMenu", false)
+                                    }
+                                    flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                                }
+                                Log.d("NavBar", "Putting 'openMenu' into Intent")
+                                startActivity(sendData)
                             },
                             icon = it.icon,
                             dropletColor = Color.White,

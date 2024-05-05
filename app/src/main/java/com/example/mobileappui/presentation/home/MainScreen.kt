@@ -6,10 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-
-import android.os.Bundle
+import android.widget.FrameLayout
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import com.example.mobileappui.R
 
 class MainScreen: AppCompatActivity() {
@@ -24,10 +24,10 @@ class MainScreen: AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent) {
-        val menuView: View = findViewById(R.id.menu)
-        val value = intent.getStringExtra("openMenu").toString()
+        val menuView: FragmentContainerView = findViewById(R.id.menu)
+        val value = intent.getBooleanExtra("openMenu", false)
         Log.d("MainScreen", "Received value from Intent: $value")
-        if (value == "open") {
+        if (value) {
             menuView.visibility = View.VISIBLE
         } else {
             menuView.visibility = View.GONE
