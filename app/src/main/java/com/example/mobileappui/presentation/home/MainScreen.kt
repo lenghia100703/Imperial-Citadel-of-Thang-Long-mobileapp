@@ -10,16 +10,22 @@ import android.widget.FrameLayout
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.Navigation
+import androidx.navigation.compose.rememberNavController
 import com.example.mobileappui.R
 
 class MainScreen: AppCompatActivity() {
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_screen)
+
+
     }
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        setIntent(intent) // You need to call this if you want to get the Intent in `onCreate()` later
+        setIntent(intent)
         handleIntent(intent)
     }
 
@@ -29,10 +35,12 @@ class MainScreen: AppCompatActivity() {
         Log.d("MainScreen", "Received value from Intent: $value")
         if (value) {
             menuView.visibility = View.VISIBLE
+
         } else {
             menuView.visibility = View.GONE
         }
 
     }
+
 
 }

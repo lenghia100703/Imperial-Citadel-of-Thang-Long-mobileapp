@@ -1,11 +1,18 @@
 package com.example.mobileappui.route
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.mobileappui.R
+import com.example.mobileappui.presentation.home.MainScreen
+import com.example.mobileappui.presentation.home.dropletButtons
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -27,12 +34,18 @@ class Menu : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_menu, container, false)
+        val frameLayout = view.findViewById<FrameLayout>(R.id.frame_menuLayout)
+        frameLayout.setOnClickListener {
+
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        return view
     }
 
     companion object {
