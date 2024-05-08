@@ -1,4 +1,4 @@
-package com.example.mobileappui.presentation.home
+package com.example.mobileappui.presentation.login
 
 import android.content.Intent
 import android.os.Bundle

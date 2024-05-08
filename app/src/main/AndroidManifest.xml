@@ -29,8 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.home.LoginActivity" />
-        <activity android:name=".presentation.home.RegisterActivity" />
+        <activity android:name=".presentation.login.LoginActivity" />
+        <activity android:name=".presentation.register.RegisterActivity" />
         <activity android:name=".presentation.home.MainScreen" />
     </application>
 

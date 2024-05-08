@@ -1,4 +1,4 @@
-package com.example.mobileappui.presentation.home
+package com.example.mobileappui.presentation.register
 
 import android.os.Bundle
 import android.text.TextUtils

@@ -34,16 +34,15 @@
                 android:textColor="@color/dark_yellow"/>
 
             <EditText
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/username"
-                android:background="@drawable/edittext_login"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/edittext_login"
+                android:hint="Email"
                 android:paddingStart="20dp"
-                android:hint="Username"
                 android:textColor="@color/black"
-                tools:ignore="RtlSymmetry"
-                />
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -53,7 +52,7 @@
                 android:layout_marginTop="20dp"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:textColor="@color/black"
                 tools:ignore="RtlSymmetry" />
 
@@ -70,7 +69,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:id="@+id/loginButton"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
@@ -135,7 +134,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bạn không có tài khoản?"
+                    android:text="Bạn chưa có tài khoản?"
                     android:textColor="@color/dark_yellow"/>
                 <TextView
                     android:layout_width="wrap_content"

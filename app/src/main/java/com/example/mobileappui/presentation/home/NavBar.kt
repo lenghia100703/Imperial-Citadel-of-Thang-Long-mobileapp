@@ -61,14 +61,14 @@ class NavBar : Fragment() {
                 AnimatedNavigationBar(
                     modifier = Modifier
                         .padding(top = 50.dp)
-                        .height(85.dp),
+                        .height(58.dp),
                     selectedIndex = selectedItem,
                     ballColor = darkYellow,
 
                     ballAnimation = Parabolic(tween(Duration, easing = LinearOutSlowInEasing)),
                     indentAnimation = Height(
                         indentWidth = 56.dp,
-                        indentHeight = 15.dp,
+                        indentHeight = 10.dp,
                         animationSpec = tween(
                             DoubleDuration,
                             easing = { OvershootInterpolator().getInterpolation(it) })
