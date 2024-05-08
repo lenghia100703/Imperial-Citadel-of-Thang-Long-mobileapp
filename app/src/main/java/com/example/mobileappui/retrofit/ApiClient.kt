@@ -1,8 +1,8 @@
 package com.example.mobileappui.retrofit
 
-import com.example.mobileappui.http.auth.AuthService
-import com.example.mobileappui.http.banner.BannerService
-import com.example.mobileappui.http.news.NewsService
+import com.example.mobileappui.services.auth.AuthService
+import com.example.mobileappui.services.banner.BannerService
+import com.example.mobileappui.services.news.NewsService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

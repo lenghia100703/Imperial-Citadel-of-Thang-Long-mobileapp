@@ -1,4 +1,4 @@
-package com.example.mobileappui.http.banner
+package com.example.mobileappui.services.banner
 
 import com.example.mobileappui.dtos.banner.BannerDto
 import retrofit2.Call

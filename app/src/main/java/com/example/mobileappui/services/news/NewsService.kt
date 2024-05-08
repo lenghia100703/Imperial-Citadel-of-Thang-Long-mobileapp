@@ -1,4 +1,4 @@
-package com.example.mobileappui.http.news
+package com.example.mobileappui.services.news
 
 import com.example.mobileappui.dtos.news.NewsDto
 import retrofit2.Call

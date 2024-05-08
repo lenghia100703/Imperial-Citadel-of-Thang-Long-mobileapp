@@ -1,9 +1,8 @@
-package com.example.mobileappui.http.auth
+package com.example.mobileappui.services.auth
 
 import com.example.mobileappui.dtos.auth.AuthResponseDto
 import com.example.mobileappui.dtos.auth.LoginDto
 import com.example.mobileappui.dtos.auth.RegisterDto
-import com.example.mobileappui.dtos.news.NewsDto
 import com.example.mobileappui.dtos.user.UserDto
 import retrofit2.Call
 import retrofit2.http.Body
