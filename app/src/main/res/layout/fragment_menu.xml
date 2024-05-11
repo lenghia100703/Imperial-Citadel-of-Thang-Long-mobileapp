@@ -69,7 +69,7 @@
         </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="55dp"
             android:background="@color/floral_white"/>
     </LinearLayout>
 </FrameLayout>

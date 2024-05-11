@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.example.mobileappui.R
-import com.example.mobileappui.presentation.home.LoginActivity
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"

@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileappui.R
+import com.example.mobileappui.presentation.register.RegisterActivity
 
 
 class LoginActivity : AppCompatActivity() {

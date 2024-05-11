@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,20 +8,70 @@
     tools:context=".route.Search">
 
 
-    <EditText
-        android:id="@+id/search"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edittext_login"
-        android:drawableStart="@drawable/search"
-        android:drawablePadding="10dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edittext_login"
+                    android:drawableStart="@drawable/search"
+                    android:drawablePadding="10dp"
 
-        android:hint="Search"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        tools:ignore="RtlSymmetry"
-        android:autofillHints="" />
+                    android:hint="Nhập từ khóa"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/black"
+                    tools:ignore="RtlSymmetry" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClear"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="250dp"
+                    android:backgroundTint="@color/transparent"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/clear"
+                    app:iconTint="#5f6368"
+                    app:iconGravity="textStart"
+                    android:visibility="gone"/>
+            </FrameLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFilter"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/dark_yellow"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/filter"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp" />
+        </LinearLayout>
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="390dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="0dp"
+            android:padding="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/menu_shape"
+            android:backgroundTint="@color/white"
+            android:elevation="50dp"
+            />
+
+
+    </LinearLayout>
 </FrameLayout>
