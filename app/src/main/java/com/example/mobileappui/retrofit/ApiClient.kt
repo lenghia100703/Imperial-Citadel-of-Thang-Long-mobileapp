@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
     private const val host = "192.168.1.16" // check in terminal run command ipconfig -> host = ipv4 address
-    private const val apiURL = "https://${host}:8888/api/"
+    private const val apiURL = "http://${host}:8888/api/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()

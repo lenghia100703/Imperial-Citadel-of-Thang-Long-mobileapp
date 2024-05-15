@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsService {
-    @GET("/news")
+    @GET("news")
     fun getAllNews(@Query("page") page: Int): Call<PaginatedDataDto<NewsDto>>
 }

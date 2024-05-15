@@ -20,6 +20,7 @@ import com.example.mobileappui.R
 import com.example.mobileappui.dtos.common.PaginatedDataDto
 import com.example.mobileappui.dtos.news.NewsDto
 import com.example.mobileappui.retrofit.ApiClient
+import com.example.mobileappui.services.news.NewsService
 import retrofit2.Call
 import retrofit2.Response
 
@@ -112,23 +113,21 @@ class Search : Fragment() {
         getNews()
         return view
     }
-    private val newsService = ApiClient.newsService
+    private val newsService: NewsService = ApiClient.newsService
     fun getNews() {
-        val call = newsService.getAllNews(1)
-        call.enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
+            newsService.getAllNews(1).enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
             override fun onResponse(call: Call<PaginatedDataDto<NewsDto>>, response: Response<PaginatedDataDto<NewsDto>>) {
                 if (response.isSuccessful) {
                     val news = response.body()?.data
                     println("These are the news")
                     Log.d("News", news.toString())
-                    println(news)
                 } else {
-                    println("Failed to get news")
+                    Log.d("News", "Failed to get news")
                 }
             }
 
             override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
-                println(t.message)
+                Log.d("News", t.message.toString())
             }
         })
     }
