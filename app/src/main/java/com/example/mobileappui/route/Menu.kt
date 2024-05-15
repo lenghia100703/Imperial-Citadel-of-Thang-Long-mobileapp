@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -40,14 +41,26 @@ class Menu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
-        val frameLayout = view.findViewById<FrameLayout>(R.id.frame_menuLayout)
-        frameLayout.setOnClickListener {
-
+        val btnQnA = view.findViewById<Button>(R.id.btnQnA)
+        btnQnA.setOnClickListener {
+            replaceFragment(QnAScreen())
+            val sendData = Intent(activity, MainScreen::class.java).apply {
+                putExtra("openMenu", false)
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            Log.d("NavBar", "Putting 'openMenu' into Intent")
+            startActivity(sendData)
         }
         // Inflate the layout for this fragment
         return view
     }
 
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

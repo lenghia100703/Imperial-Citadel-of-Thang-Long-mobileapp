@@ -62,7 +62,7 @@
 
                     android:backgroundTint="@drawable/btn_color_state"
                     android:drawableTop="@drawable/multi_choice"
-                    android:text="Q&amp;A"
+                    android:text="Quiz"
                     android:textColor="@color/black"/>
             </LinearLayout>
 

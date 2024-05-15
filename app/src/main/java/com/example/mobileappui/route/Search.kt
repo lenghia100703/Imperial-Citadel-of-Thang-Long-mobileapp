@@ -1,14 +1,27 @@
 package com.example.mobileappui.route
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.TextWatcher
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.fragment.app.Fragment
 import com.example.mobileappui.R
+import com.example.mobileappui.dtos.common.PaginatedDataDto
+import com.example.mobileappui.dtos.news.NewsDto
+import com.example.mobileappui.retrofit.ApiClient
+import retrofit2.Call
+import retrofit2.Response
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -30,6 +43,7 @@ class Search : Fragment() {
     }
 
 
+    @SuppressLint("MissingInflatedId", "UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,17 +73,65 @@ class Search : Fragment() {
 
         }
         search.addTextChangedListener(watcher)
-        search.setOnKeyListener(View.OnKeyListener { _, keyCode, _ ->
-            if (keyCode == android.view.KeyEvent.KEYCODE_ENTER) {
+        search.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 //Perform Code
-                println("Entered")
+                println("Enteredddddddddddddddddddddddddddd")
+                // Đóng bàn phím ảo
+                val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                inputMethodManager?.hideSoftInputFromWindow(search.windowToken, 0)
+                btnClear.visibility = View.GONE
+                // Thoát con trỏ khỏi EditText
+                search.clearFocus()
                 return@OnKeyListener true
             }
             false
         })
+
+        val hint1: TextView = view.findViewById(R.id.hint1)
+        hint1.setOnClickListener {
+            search.setText(hint1.text)
+            btnClear.visibility = View.GONE
+        }
+
+        //search navigation
+        val postBtn: TextView = view.findViewById(R.id.leftBtn)
+        val artifactBtn: TextView = view.findViewById(R.id.rightBtn)
+        postBtn.setOnClickListener {
+            postBtn.background = resources.getDrawable(R.drawable.left_searchselect)
+            postBtn.setTextColor(Color.White.toArgb())
+            artifactBtn.background = resources.getDrawable(R.drawable.right_search)
+            artifactBtn.setTextColor(Color.Black.toArgb())
+        }
+        artifactBtn.setOnClickListener {
+            artifactBtn.background = resources.getDrawable(R.drawable.right_searchselect)
+            artifactBtn.setTextColor(Color.White.toArgb())
+            postBtn.background = resources.getDrawable(R.drawable.left_search)
+            postBtn.setTextColor(Color.Black.toArgb())
+        }
+        getNews()
         return view
     }
+    private val newsService = ApiClient.newsService
+    fun getNews() {
+        val call = newsService.getAllNews(1)
+        call.enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
+            override fun onResponse(call: Call<PaginatedDataDto<NewsDto>>, response: Response<PaginatedDataDto<NewsDto>>) {
+                if (response.isSuccessful) {
+                    val news = response.body()?.data
+                    println("These are the news")
+                    Log.d("News", news.toString())
+                    println(news)
+                } else {
+                    println("Failed to get news")
+                }
+            }
 
+            override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
+                println(t.message)
+            }
+        })
+    }
 
     companion object {
         /**

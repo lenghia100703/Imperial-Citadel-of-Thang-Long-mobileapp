@@ -35,6 +35,7 @@ import com.example.mobileappui.route.Search
 import com.example.mobileappui.colorButtons.BellColorButton
 import com.example.mobileappui.colorButtons.ButtonBackground
 import com.example.mobileappui.databinding.ActivityMainBinding
+import com.example.mobileappui.presentation.viewArticle.News
 import com.exyte.animatednavbar.AnimatedNavigationBar
 import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
 import com.exyte.animatednavbar.animation.indendshape.Height
@@ -87,7 +88,7 @@ class NavBar : Fragment() {
                                 //chuyển hướng
                                 when(dropletButtons[selectedItem].description) {
                                     "Person" -> {
-                                        replaceFragment(Account())
+                                        replaceFragment(News())
 
                                         //intent.putExtra("openMenu", "close")
                                     }
