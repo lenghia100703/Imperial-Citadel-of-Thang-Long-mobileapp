@@ -68,6 +68,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
+    //hawk
+    implementation("com.orhanobut:hawk:2.0.1")
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
     // jetpack compose
     implementation("androidx.compose.foundation:foundation:1.6.7")
     implementation("androidx.activity:activity-compose:1.9.0")

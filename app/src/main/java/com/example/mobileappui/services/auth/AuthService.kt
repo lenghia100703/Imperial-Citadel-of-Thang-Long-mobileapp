@@ -8,14 +8,15 @@ import com.example.mobileappui.dtos.user.UserDto
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface AuthService {
-    @POST("/auth/login")
+    @POST("auth/login")
     fun login(@Body loginDto: LoginDto): Call<CommonResponseDto<AuthResponseDto>>
 
-    @POST("/auth/register")
+    @POST("auth/register")
     fun register(@Body registerDto: RegisterDto): Call<CommonResponseDto<UserDto>>
 
-    @POST("/auth/logout")
-    fun logout(): Call<CommonResponseDto<String>>
+    @POST("auth/logout-by-id/{id}")
+    fun logout(@Path("id") id: Long): Call<CommonResponseDto<String>>
 }
