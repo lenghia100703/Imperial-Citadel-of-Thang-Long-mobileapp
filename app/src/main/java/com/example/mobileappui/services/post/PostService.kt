@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PostService {
-    @GET("/post")
+    @GET("post")
     fun getAllPost(@Query("page") page: Int): Call<PaginatedDataDto<PostDto>>
 }
