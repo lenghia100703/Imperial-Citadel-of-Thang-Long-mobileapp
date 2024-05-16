@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ExhibitionService {
-    @GET("/exhibition")
+    @GET("exhibition")
     fun getAllExhibition(@Query("page") page: Int): Call<PaginatedDataDto<ExhibitionDto>>
 }

@@ -10,7 +10,7 @@ data class ExhibitionDto(
     val image: String,
     val adminId: UserDto,
     val createdBy: String,
-    val updatedBy: String,
+    val updatedBy: String?,
     val createdAt: Date,
-    val updatedAt: Date,
+    val updatedAt: Date?,
 )

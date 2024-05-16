@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="56dp"
+    tools:context=".presentation.exhibition.ExhibitionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".presentation.exhibition.ExhibitionFragment"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/transparent"
+                android:drawableLeft="@drawable/back"
+                android:padding="0dp" />
+
+            <TextView
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chi tiết hiện vật"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/dark_yellow"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="50dp"
+            />
+
+        <TextView
+            android:id="@+id/name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Tên hiện vật"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Sưu tập bát, đĩa có chữ 長樂(Trường Lạc), gốm men trắng vẽ lam thời Lê sơ"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            />
+
+        <TextView
+            android:id="@+id/description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Thông tin hiện vật"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Bộ sưu tập được tìm thấy cùng một số đồ dùng khác của vua và hoàng hậu, trong đó một số hiện vật viết chữ Trường Lạc - tên cung điện trong Hoàng cung Thăng Long thời Lê sơ. Các hiện vật nằm trong lớp đào có địa tầng ổn định, không xáo trộn nên độ chân xác rất cao. Bộ sưu tập được tìm thấy cùng một số đồ dùng khác của vua và hoàng hậu, trong đó một số hiện vật viết chữ Trường Lạc - tên cung điện trong Hoàng cung Thăng Long thời Lê sơ. Các hiện vật nằm trong lớp đào có địa tầng ổn định, không xáo trộn nên độ chân xác rất cao."
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
