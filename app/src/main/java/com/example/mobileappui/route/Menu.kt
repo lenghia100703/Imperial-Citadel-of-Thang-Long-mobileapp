@@ -51,6 +51,15 @@ class Menu : Fragment() {
             Log.d("NavBar", "Putting 'openMenu' into Intent")
             startActivity(sendData)
         }
+        val btn3D = view.findViewById<Button>(R.id.btn3D)
+        btn3D.setOnClickListener {
+            replaceFragment(ReviewList(0))
+            val sendData = Intent(activity, MainScreen::class.java).apply {
+                putExtra("openMenu", false)
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(sendData)
+        }
         // Inflate the layout for this fragment
         return view
     }
