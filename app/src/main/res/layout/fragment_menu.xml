@@ -33,37 +33,55 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/btn3D"
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn3D"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
 
-                    android:backgroundTint="@drawable/btn_color_state"
-                    android:drawableTop="@drawable/icons8_3d_viewer"
-                    android:text="Hiện vật 3D"
-                    android:textColor="@color/black"/>
-                <Button
-                    android:id="@+id/btnBuilding"
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
+                        android:backgroundTint="@drawable/btn_color_state"
+                        android:drawableTop="@drawable/icons8_3d_viewer"
+                        android:text="Hiện vật 3D"
+                        android:textColor="@color/black"/>
+                    <Button
+                        android:id="@+id/btnBuilding"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
 
-                    android:backgroundTint="@drawable/btn_color_state"
-                    android:drawableTop="@drawable/chinese_temple"
-                    android:text="Các di tich"
-                    android:textColor="@color/black"/>
-                <Button
-                    android:id="@+id/btnQnA"
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
+                        android:backgroundTint="@drawable/btn_color_state"
+                        android:drawableTop="@drawable/chinese_temple"
+                        android:text="Các di tich"
+                        android:textColor="@color/black"/>
+                    <Button
+                        android:id="@+id/btnQnA"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
 
-                    android:backgroundTint="@drawable/btn_color_state"
-                    android:drawableTop="@drawable/multi_choice"
-                    android:text="Quiz"
-                    android:textColor="@color/black"/>
+                        android:backgroundTint="@drawable/btn_color_state"
+                        android:drawableTop="@drawable/multi_choice"
+                        android:text="Quiz"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btnReview"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+
+                        android:backgroundTint="@drawable/btn_color_state"
+                        android:drawableTop="@drawable/review"
+                        android:text="Xem Review"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
