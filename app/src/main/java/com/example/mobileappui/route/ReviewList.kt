@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.mobileappui.R

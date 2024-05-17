@@ -12,7 +12,6 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.mobileappui.R
-import com.example.mobileappui.presentation.exhibition.ExhibitionFragment
 import com.example.mobileappui.presentation.home.MainScreen
 import com.example.mobileappui.presentation.home.dropletButtons
 
@@ -43,8 +42,6 @@ class Menu : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
         val btnQnA = view.findViewById<Button>(R.id.btnQnA)
-        val btn3D = view.findViewById<Button>(R.id.btn3D)
-        val btnReview = view.findViewById<Button>(R.id.btnReview)
         btnQnA.setOnClickListener {
             replaceFragment(QnAScreen())
             val sendData = Intent(activity, MainScreen::class.java).apply {
@@ -54,17 +51,7 @@ class Menu : Fragment() {
             Log.d("NavBar", "Putting 'openMenu' into Intent")
             startActivity(sendData)
         }
-
-        btn3D.setOnClickListener {
-            replaceFragment(ExhibitionFragment())
-            val sendData = Intent(activity, MainScreen::class.java).apply {
-                putExtra("openMenu", false)
-                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }
-            Log.d("NavBar", "Putting 'openMenu' into Intent")
-            startActivity(sendData)
-        }
-
+        val btnReview = view.findViewById<Button>(R.id.btnReview)
         btnReview.setOnClickListener {
             replaceFragment(ReviewList(0))
             val sendData = Intent(activity, MainScreen::class.java).apply {
@@ -73,7 +60,6 @@ class Menu : Fragment() {
             }
             startActivity(sendData)
         }
-
         // Inflate the layout for this fragment
         return view
     }

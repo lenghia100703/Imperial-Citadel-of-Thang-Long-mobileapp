@@ -8,6 +8,7 @@ import android.webkit.WebView
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RatingBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.mobileappui.R
@@ -90,7 +91,8 @@ class ViewReview(onPage: Int) : Fragment() {
                 val author = data[onPage].createdBy
                 val title = data[onPage].title
                 val imageUrl = data[onPage].image
-                val rating = title.length % 6;
+                val desc = data[onPage].description
+                val rating = data[onPage].rating
                 layout = postLayouts[0]
                 for (j in 0 until layout.childCount) {
                     val child: View = layout.getChildAt(j)
@@ -115,6 +117,15 @@ class ViewReview(onPage: Int) : Fragment() {
                                             </html>
                                             """
                         child.loadData(htmlContent, "text/html", "UTF-8")
+                    }
+                    if (child is RatingBar) {
+                        child.rating = rating.toFloat()
+                    }
+                    if (child is ScrollView) {
+                        val text = child.getChildAt(0)
+                        if (text is TextView) {
+                            text.text = desc
+                        }
                     }
                 }
 
