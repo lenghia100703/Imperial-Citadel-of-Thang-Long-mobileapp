@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface TicketService {
-    @GET("/ticket/me")
+    @GET("ticket/me")
     fun getTicketByUserId(): Call<CommonResponseDto<List<TicketDto>>>
 
 }

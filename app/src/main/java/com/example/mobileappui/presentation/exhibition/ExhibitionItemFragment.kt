@@ -1,10 +1,13 @@
 package com.example.mobileappui.presentation.exhibition
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,11 +30,12 @@ class ExhibitionItemFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_exhibition_item, container, false)
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val backBtn = view.findViewById<Button>(R.id.back_btn)
 
-        val imageView = view.findViewById<ImageView>(R.id.image)
+        val imageView = view.findViewById<WebView>(R.id.image)
         val titleTextView = view.findViewById<TextView>(R.id.name)
         val descriptionTextView = view.findViewById<TextView>(R.id.description)
 
@@ -42,7 +46,47 @@ class ExhibitionItemFragment : Fragment() {
 
         titleTextView.text = title
         descriptionTextView.text = description
-        Glide.with(this).load(imageUrl).into(imageView)
+
+        imageView.settings.apply {
+            javaScriptEnabled = true
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            builtInZoomControls = true
+            displayZoomControls = false
+        }
+        imageView.webViewClient = WebViewClient()
+        if (imageUrl != null) {
+            if (imageUrl.endsWith(".png", true) || imageUrl.endsWith(".jpg", true) || imageUrl.endsWith(".jpeg", true)) {
+                val htmlData = """
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: contain;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="$imageUrl" alt="Exhibition Image">
+                    </body>
+                    </html>
+                """.trimIndent()
+                imageView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null)
+            } else {
+                imageView.loadUrl(imageUrl)
+            }
+        }
 
 
         backBtn.setOnClickListener {

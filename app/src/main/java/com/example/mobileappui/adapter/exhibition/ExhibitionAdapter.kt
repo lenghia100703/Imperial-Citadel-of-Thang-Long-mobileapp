@@ -1,9 +1,12 @@
 package com.example.mobileappui.presentation.exhibition
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,13 +19,56 @@ class ExhibitionAdapter(private val items: List<ExhibitionDto>, private val onIt
     RecyclerView.Adapter<ExhibitionAdapter.ExhibitionViewHolder>() {
 
     class ExhibitionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.image)
+//        val imageView: ImageView = itemView.findViewById(R.id.image)
         val titleView: TextView = itemView.findViewById(R.id.name)
+        val webView: WebView = itemView.findViewById(R.id.image_web_view)
 
+        @SuppressLint("ClickableViewAccessibility", "SetJavaScriptEnabled")
         fun bind(exhibition: ExhibitionDto, onItemClick: (ExhibitionDto) -> Unit) {
             titleView.text = exhibition.name
             Log.d("ExhibitionAdapter", titleView.text as String)
-            Glide.with(itemView.context).load(exhibition.image).into(imageView)
+            webView.settings.apply {
+                javaScriptEnabled = true
+                loadWithOverviewMode = true
+                useWideViewPort = true
+                builtInZoomControls = true
+                displayZoomControls = false
+            }
+            webView.webViewClient = WebViewClient()
+            if (exhibition.image.endsWith(".png", true) || exhibition.image.endsWith(".jpg", true) || exhibition.image.endsWith(".jpeg", true)) {
+                val htmlData = """
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: contain;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="${exhibition.image}" alt="Exhibition Image">
+                    </body>
+                    </html>
+                """.trimIndent()
+                webView.loadDataWithBaseURL(null, htmlData, "text/html", "UTF-8", null)
+            } else {
+                webView.loadUrl(exhibition.image)
+            }
+
+            webView.setOnTouchListener { v, event ->
+                itemView.onTouchEvent(event)
+            }
             itemView.setOnClickListener { onItemClick(exhibition) }
         }
     }

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface QuestionService {
-    @GET("/question")
+    @GET("question")
     fun getAllQuestion(@Query("page") page: Int): Call<PaginatedDataDto<QuestionDto>>
 
 }

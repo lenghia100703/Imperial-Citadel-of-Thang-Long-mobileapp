@@ -41,13 +41,12 @@
                 android:textStyle="bold" />
         </FrameLayout>
 
-        <ImageView
+        <WebView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/logo"
-            android:layout_marginTop="50dp"
-            />
+            android:layout_centerHorizontal="true"
+            tools:ignore="MissingConstraints,WebViewLayout" />
 
         <TextView
             android:id="@+id/name_title"

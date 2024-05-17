@@ -20,6 +20,9 @@ import com.example.mobileappui.dtos.common.CommonResponseDto
 import com.example.mobileappui.dtos.user.UserDto
 import com.example.mobileappui.models.AuthViewModel
 import com.example.mobileappui.models.UserViewModel
+import com.example.mobileappui.presentation.login.LoginFragment
+import com.example.mobileappui.presentation.password.PasswordFragment
+import com.example.mobileappui.presentation.register.RegisterFragment
 import com.example.mobileappui.retrofit.ApiClient
 import com.example.mobileappui.services.user.UserService
 import retrofit2.Call
@@ -87,11 +90,30 @@ class ProfileFragment : Fragment() {
         };
 
         val btn = view.findViewById<Button>(R.id.click_btn)
+        val changePassword = view.findViewById<Button>(R.id.change_password)
+        val updateProfile = view.findViewById<Button>(R.id.update_profile)
+
+        changePassword.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, PasswordFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        updateProfile.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, UpdateProfileFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         btn.setOnClickListener {
             viewModel.logout(
                 {
-                    startActivity(Intent(activity, MainActivity::class.java))
-                    activity?.finish()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, LoginFragment())
+                        .addToBackStack(null)
+                        .commit()
                     Toast.makeText(
                         requireContext(),
                         "Đăng xuất thành công",
@@ -108,39 +130,4 @@ class ProfileFragment : Fragment() {
         }
     }
 
-//    private fun getUserProfile(id: Long, onSuccess: (String) -> Unit, onError: () -> ) {
-//        userService.getUserById(id).enqueue(object : retrofit2.Callback<CommonResponseDto<UserDto>> {
-//            override fun onResponse(call: Call<CommonResponseDto<UserDto>>, response: Response<CommonResponseDto<UserDto>>) {
-//                if (response.isSuccessful) {
-//                    val responseData = response.body()?.data
-//                    if (responseData != null) {
-//                        onSuccess(responseData.toString())
-//                        usernameTextView.text = responseData.username;
-//                        emailTextView.text = responseData.email;
-//                        phoneTextView.text = responseData.phone;
-//                        roleTextView.text = responseData.role;
-//
-//                        context?.let {
-//                            Glide.with(it)
-//                                .load(responseData.avatar)
-//                                .into(profileImageView)
-//                        };
-//                        Log.d("UserViewModel", "onResponse: $responseData")
-//                    } else {
-//                        Log.d("UserViewModel", "onResponse: $responseData")
-//                        onError()
-//                    }
-//                } else {
-//                    Log.d("UserViewModel", "onResponse: ${response.message()}")
-//                    onError()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<CommonResponseDto<UserDto>>, t: Throwable) {
-//                Log.d("UserViewModel", "onFailure: ${t.message}")
-//                onError()
-//            }
-//
-//        })
-//    }
 }

@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface LocationService {
-    @GET("/location")
+    @GET("location")
     fun getAllLocation(@Query("page") page: Int): Call<PaginatedDataDto<LocationDto>>
 }

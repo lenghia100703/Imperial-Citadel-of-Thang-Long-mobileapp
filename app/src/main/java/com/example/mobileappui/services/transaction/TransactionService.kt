@@ -6,6 +6,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface TransactionService {
-    @GET("/transaction/me")
+    @GET("transaction/me")
     fun getTransactionByUserId(): Call<CommonResponseDto<List<TransactionDto>>>
 }
