@@ -12,7 +12,7 @@
         android:text="Hồ sơ cá nhân"
         android:textAlignment="center"
         android:textColor="@color/dark_yellow"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -158,13 +158,35 @@
         android:background="@android:color/darker_gray" />
 
     <Button
+        android:id="@+id/update_profile"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Chỉnh sửa thông tin"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/change_password"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Đổi mật khẩu"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18sp" />
+
+    <Button
         android:id="@+id/click_btn"
         android:layout_width="309dp"
         android:layout_height="56dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
-        android:text="Đổi tài khoản"
+        android:text="Đăng xuất"
         android:textColor="@color/dark_yellow"
         android:textSize="18sp" />
 

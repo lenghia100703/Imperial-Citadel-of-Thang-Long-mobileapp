@@ -1,6 +1,5 @@
 package com.example.mobileappui.presentation.home
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +40,6 @@ import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
 import com.exyte.animatednavbar.animation.indendshape.Height
 import com.exyte.animatednavbar.items.dropletbutton.DropletButton
 
-
 class NavBar : Fragment() {
     private lateinit var binding: ActivityMainBinding
 
@@ -56,7 +54,6 @@ class NavBar : Fragment() {
 
                 binding = ActivityMainBinding.inflate(layoutInflater)
 
-                //DropletButtonNavBar()
                 var selectedItem by remember { mutableIntStateOf(2) }
                 val darkYellow = Color(0xFF786b2e)
                 AnimatedNavigationBar(
@@ -65,7 +62,6 @@ class NavBar : Fragment() {
                         .height(58.dp),
                     selectedIndex = selectedItem,
                     ballColor = darkYellow,
-
                     ballAnimation = Parabolic(tween(Duration, easing = LinearOutSlowInEasing)),
                     indentAnimation = Height(
                         indentWidth = 56.dp,
@@ -75,51 +71,33 @@ class NavBar : Fragment() {
                             easing = { OvershootInterpolator().getInterpolation(it) })
                     )
                 ) {
-
                     dropletButtons.forEachIndexed { index, it ->
                         DropletButton(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(darkYellow),
                             isSelected = selectedItem == index,
-                            onClick = { selectedItem = index
-
-
-                                //chuyển hướng
-                                when(dropletButtons[selectedItem].description) {
-                                    "Person" -> {
-                                        replaceFragment(News())
-
-                                        //intent.putExtra("openMenu", "close")
-                                    }
-                                    "Search" -> {
-                                        replaceFragment(Search())
-                                        //intent.putExtra("openMenu", "close")
-                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
-                                    }
-                                    "Home"   -> {
-                                        replaceFragment(Home())
-                                        //intent.putExtra("openMenu", "close")
-                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
-                                    }
-                                    "Book ticket" -> {
-                                        replaceFragment(BookTicket())
-                                        //intent.putExtra("openMenu", "close")
-                                        //Log.d("NavBar", "Putting 'openMenu' into Intent")
-                                    }
-                                    "Menu" -> {
-
-                                    }
-                                    else ->{
-                                        println("Nothing")
-                                    }
+                            onClick = {
+                                // Điều kiện kiểm tra nếu nút không phải là Menu
+                                if (it.description != "Menu") {
+                                    selectedItem = index
                                 }
-                                val sendData = Intent(activity, MainScreen::class.java).apply {
-                                    if (dropletButtons[selectedItem].description == "Menu") {
-                                        putExtra("openMenu", true)
-                                    } else {
-                                        putExtra("openMenu", false)
+
+                                // chuyển hướng
+                                when (it.description) {
+                                    "Person" -> replaceFragment(Account())
+                                    "Search" -> replaceFragment(Search())
+                                    "Home" -> replaceFragment(Home())
+                                    "Book ticket" -> replaceFragment(BookTicket())
+                                    "Menu" -> {
+                                        // Logic xử lý cho Menu, nếu cần
                                     }
+                                    else -> println("Nothing")
+                                }
+
+                                // Gửi dữ liệu thông qua Intent
+                                val sendData = Intent(activity, MainScreen::class.java).apply {
+                                    putExtra("openMenu", it.description == "Menu")
                                     flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                                 }
                                 Log.d("NavBar", "Putting 'openMenu' into Intent")
@@ -134,6 +112,7 @@ class NavBar : Fragment() {
             }
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -174,13 +153,12 @@ val dropletButtons = listOf(
         isSelected = false,
         description = "Book ticket"
     ),
-
     Item(
         icon = R.drawable.menu,
         isSelected = false,
         description = "Menu"
     ),
-
 )
+
 const val Duration = 500
 const val DoubleDuration = 1000

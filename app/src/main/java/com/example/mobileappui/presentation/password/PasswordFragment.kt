@@ -1,4 +1,4 @@
-package com.example.mobileappui.presentation.register
+package com.example.mobileappui.presentation.password
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,25 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.example.mobileappui.MainActivity
 import com.example.mobileappui.R
-import com.example.mobileappui.presentation.login.LoginFragment
 import com.example.mobileappui.models.AuthViewModel
+import com.example.mobileappui.models.UserViewModel
+import com.example.mobileappui.presentation.profile.ProfileFragment
+import com.example.mobileappui.presentation.register.RegisterFragment
+import com.example.mobileappui.route.Home
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class RegisterFragment : Fragment() {
-    private val viewModel: AuthViewModel by viewModels()
+class PasswordFragment : Fragment() {
+    private val userViewModel: UserViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -36,46 +29,43 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        return inflater.inflate(R.layout.fragment_password, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val registerButton = view.findViewById<Button>(R.id.registerButton)
-        val loginText = view.findViewById<TextView>(R.id.login_page)
+        val changePasswordButton = view.findViewById<Button>(R.id.registerButton)
+        val backBtn = view.findViewById<Button>(R.id.back_btn)
 
-        registerButton.setOnClickListener {
-            val username = view.findViewById<EditText>(R.id.username).text.toString()
-            val email = view.findViewById<EditText>(R.id.email).text.toString()
+        changePasswordButton.setOnClickListener {
+            val currentPassword = view.findViewById<EditText>(R.id.current_password).text.toString()
             val password = view.findViewById<EditText>(R.id.password).text.toString()
             val confirmPassword = view.findViewById<EditText>(R.id.confirm_password).text.toString()
 
-            viewModel.register(username, email, password, confirmPassword,
+            userViewModel.changePassword(currentPassword, password, confirmPassword,
                 {
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.frame_layout, LoginFragment())
-                        .addToBackStack(null)
-                        .commit()
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
                     Toast.makeText(
                         requireContext(),
-                        "Đăng ký thành công",
+                        "Đổi mật khẩu thành công",
                         Toast.LENGTH_SHORT
                     ).show()
                 },
                 {
                     Toast.makeText(
                         requireContext(),
-                        "Đăng ký thất bại!",
+                        "Đổi mật khẩu thất bại!",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             )
         }
 
-        loginText.setOnClickListener {
+        backBtn.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, LoginFragment())
+                .replace(R.id.frame_layout, ProfileFragment())
                 .addToBackStack(null)
                 .commit()
         }

@@ -1,0 +1,106 @@
+<!-- res/layout/fragment_image_title_description.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:backgroundTint="@color/dark_brown"
+        android:layout_gravity="top|start"
+        android:textColor="@color/floral_white"
+        android:layout_marginTop="8dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:text="Sơ đồ"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="30sp">
+        </TextView>
+        <Button
+            android:id="@+id/btnGuide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@drawable/btn_color_state"
+            android:drawableTop="@drawable/route"
+            android:text="Đường đến Di tích"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnPosition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:backgroundTint="@drawable/btn_color_state"
+            android:drawableTop="@drawable/location"
+            android:text="Vị trí hiện tại"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <WebView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center">
+
+    </WebView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btnRoute1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_yellow"
+            android:text="Các nhà Lý - Trần và Thăng Long"
+            android:textColor="@color/floral_white"
+            android:layout_margin="1dp"/>
+        <Button
+            android:id="@+id/btnRoute2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thăng Long thời hiện đại"
+            android:textColor="@color/floral_white"
+            android:backgroundTint="@color/dark_yellow"
+            android:layout_margin="1dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btnRoute3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/dark_yellow"
+            android:text="Thủ đô kháng chiến"
+            android:textColor="@color/floral_white"
+            android:layout_margin="1dp"/>
+        <Button
+            android:id="@+id/btnRoute4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Trấn Bắc Thành"
+            android:textColor="@color/floral_white"
+            android:backgroundTint="@color/dark_yellow"
+            android:layout_margin="1dp"/>
+    </LinearLayout>
+</LinearLayout>
