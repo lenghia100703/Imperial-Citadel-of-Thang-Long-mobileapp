@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/floral_white">
     <LinearLayout
+        android:id="@+id/quiz_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -15,6 +17,7 @@
             tools:ignore="MissingConstraints">
 
             <Button
+                android:id="@+id/back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
@@ -43,11 +46,11 @@
             android:layout_marginBottom="50dp"
             android:elevation="50dp">
             <TextView
+                android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:text="Vua Lý Thái Tổ  ban chiếu dời đô - chính thức đưa thành Đại La cũ trở thành kinh đô mới của đất nước vào năm náo?"
                 android:textSize="20dp"/>
         </FrameLayout>
 
@@ -58,7 +61,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/yellow"
-            android:text="1010"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/answer2"
@@ -67,7 +69,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/yellow"
-            android:text="1980"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/answer3"
@@ -76,7 +77,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/yellow"
-            android:text="1945"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/answer4"
@@ -84,7 +84,181 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/yellow"
-            android:text="2024"
             android:textColor="@color/white"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#55000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            android:background="@drawable/menu_shape"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/result_text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Chinh xac"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:paddingTop="9dp"
+                android:background="@drawable/rounded_corners"
+                android:backgroundTint="@color/green"/>
+
+            <TextView
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Giải thích Giải thích 
+                Giải thích Giải thích 
+                Giải thích Giải thích 
+                Giải thích Giải thích 
+                Giải thích Giải thích Giải thích"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/next_question"
+                android:layout_width="266dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/green"
+                android:text="Đã hiểu, tới câu tiếp"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/scoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#55000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/menu_shape"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:text="Chúc mừng!!!"
+                android:textStyle="bold"
+                android:textSize="32sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Số câu bạn làm đúng:"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="9/10"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/exit"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/score_btn"
+                        android:backgroundTint="@color/green"
+                        android:gravity="center"
+                        android:src="@drawable/exit"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Thoát"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/restart"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/score_btn"
+                        android:backgroundTint="@color/green"
+                        android:src="@drawable/exit"
+                        android:gravity="center"
+
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Làm lại"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/continueQuiz"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/score_btn"
+                        android:backgroundTint="@color/green"
+                        android:src="@drawable/exit"
+                        android:gravity="center"
+
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Làm tiếp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
