@@ -16,6 +16,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -132,6 +134,14 @@ class Search : Fragment() {
                 searchExhibition(search, view)
         }
 
+        val scrollView = view.findViewById<ScrollView>(R.id.scrollViewArticle)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+
+        scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val maxScroll = scrollView.getChildAt(0).height - scrollView.height
+            val currentScroll = scrollView.scrollY
+            progressBar.progress = (currentScroll.toFloat() / maxScroll.toFloat() * progressBar.max).toInt()
+        }
         return view
     }
 

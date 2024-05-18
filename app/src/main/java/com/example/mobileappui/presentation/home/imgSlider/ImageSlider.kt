@@ -3,6 +3,7 @@ package com.example.mobileappui.presentation.home.imgSlider
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +15,21 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mobileappui.R
+import com.example.mobileappui.dtos.banner.BannerDto
+import com.example.mobileappui.dtos.common.PaginatedDataDto
+import com.example.mobileappui.dtos.news.NewsDto
+import com.example.mobileappui.retrofit.ApiClient
+import com.example.mobileappui.services.banner.BannerService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.math.abs
 
 class ImageSlider: Fragment() {
     private lateinit var viewPager2: ViewPager2
     private lateinit var indicatorContainer : LinearLayout
     private lateinit var hander : Handler
-    private lateinit var imageList: ArrayList<Int>
+    private lateinit var imageList: ArrayList<String>
     private lateinit var adapter: ImageAdapter
 
     override fun onCreateView(
@@ -82,9 +91,23 @@ class ImageSlider: Fragment() {
         viewPager2 = requireView().findViewById(R.id.viewPager2)
         hander = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
-        imageList.add(R.drawable.doanmon)
-        imageList.add(R.drawable.doco)
-        imageList.add(R.drawable.hoangthanh)
+        val bannerService: BannerService = ApiClient.bannerService
+        bannerService.getALlBannerIsActive().enqueue(object : Callback<List<BannerDto>> {
+            override fun onResponse(call: Call<List<BannerDto>>, response: Response<List<BannerDto>>) {
+                if (response.isSuccessful) {
+                    val banners: List<BannerDto> = response.body()!!
+                    for (banner in banners) {
+                        imageList.add(banner.image)
+                    }
+
+                } else {
+                    Log.d("News", "Failed to get news")
+                }
+            }
+            override fun onFailure(call: Call<List<BannerDto>>, t: Throwable) {
+                Log.d("News", t.message.toString())
+            }
+        })
         adapter = ImageAdapter(imageList, viewPager2)
         viewPager2.adapter = adapter
         viewPager2.offscreenPageLimit = 3
