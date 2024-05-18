@@ -1,8 +1,6 @@
 package com.example.mobileappui.presentation.profile
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,19 +12,14 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import com.example.mobileappui.MainActivity
 import com.example.mobileappui.R
-import com.example.mobileappui.dtos.common.CommonResponseDto
-import com.example.mobileappui.dtos.user.UserDto
 import com.example.mobileappui.models.AuthViewModel
 import com.example.mobileappui.models.UserViewModel
 import com.example.mobileappui.presentation.login.LoginFragment
+import com.example.mobileappui.route.AddReview
 import com.example.mobileappui.presentation.password.PasswordFragment
-import com.example.mobileappui.presentation.register.RegisterFragment
 import com.example.mobileappui.retrofit.ApiClient
 import com.example.mobileappui.services.user.UserService
-import retrofit2.Call
-import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,7 +56,7 @@ class ProfileFragment : Fragment() {
         val emailTextView = view.findViewById<TextView>(R.id.email)!!;
         val phoneTextView = view.findViewById<TextView>(R.id.phone)!!;
         val roleTextView = view.findViewById<TextView>(R.id.role)!!;
-        val profileImageView = view.findViewById<ImageView>(R.id.profile_image)!!;
+        val profileImageView = view.findViewById<ImageView>(R.id.profile_image)!!
 
         userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
             usernameTextView.text = user.username
@@ -92,14 +85,19 @@ class ProfileFragment : Fragment() {
         val btn = view.findViewById<Button>(R.id.click_btn)
         val changePassword = view.findViewById<Button>(R.id.change_password)
         val updateProfile = view.findViewById<Button>(R.id.update_profile)
-
+        val addReview = view.findViewById<Button>(R.id.add_review)
         changePassword.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.frame_layout, PasswordFragment())
                 .addToBackStack(null)
                 .commit()
         }
-
+        addReview.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, AddReview<Any>())
+                .addToBackStack(null)
+                .commit()
+        }
         updateProfile.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.frame_layout, UpdateProfileFragment())

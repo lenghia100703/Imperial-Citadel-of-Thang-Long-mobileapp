@@ -167,7 +167,16 @@
         android:text="Chỉnh sửa thông tin"
         android:textColor="@color/dark_yellow"
         android:textSize="18sp" />
-
+    <Button
+        android:id="@+id/add_review"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Viết bài review"
+        android:textColor="@color/dark_yellow"
+        android:textSize="18sp" />
     <Button
         android:id="@+id/change_password"
         android:layout_width="309dp"
