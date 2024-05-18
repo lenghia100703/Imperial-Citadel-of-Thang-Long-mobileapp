@@ -8,6 +8,8 @@ import com.example.mobileappui.services.news.NewsService
 import com.example.mobileappui.services.paypal.PaypalService
 import com.example.mobileappui.services.post.PostService
 import com.example.mobileappui.services.question.QuestionService
+import com.example.mobileappui.services.search.SearchService
+
 import com.example.mobileappui.services.ticket.TicketService
 import com.example.mobileappui.services.transaction.TransactionService
 import com.example.mobileappui.services.user.UserService
@@ -15,7 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val host = "192.168.1.17" // check in terminal run command ipconfig -> host = ipv4 address
+    private const val host = "192.168.1.4" // check in terminal run command ipconfig -> host = ipv4 address
     private const val apiURL = "http://${host}:8888/api/"
 
     private val retrofit: Retrofit by lazy {
@@ -27,6 +29,9 @@ object ApiClient {
 
     val newsService: NewsService by lazy {
         retrofit.create(NewsService::class.java)
+    }
+    val searchService: SearchService by lazy {
+        retrofit.create(SearchService::class.java)
     }
 
     val bannerService: BannerService by lazy {
