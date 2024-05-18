@@ -5,14 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
     <Button
-        android:id="@+id/returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:backgroundTint="@color/dark_brown"
-        android:layout_gravity="top|start"
-        android:textColor="@color/floral_white"
-        android:layout_marginTop="8dp"/>
+        android:id="@+id/back_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/back"
+        android:padding="0dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,11 +22,11 @@
             android:layout_height="50dp"
             android:layout_weight="2"
             android:layout_gravity="center"
-            android:text="Sơ đồ"
+            android:text="Chỉ đường"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textSize="30sp">
+            android:textSize="23sp">
         </TextView>
         <Button
             android:id="@+id/btnGuide"
@@ -48,25 +48,28 @@
             android:textColor="@color/black"/>
     </LinearLayout>
     <WebView
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_gravity="center">
 
     </WebView>
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        >
 
         <Button
             android:id="@+id/btnRoute1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/dark_yellow"
+            android:backgroundTint="@color/light_gray"
             android:text="Các nhà Lý - Trần và Thăng Long"
-            android:textColor="@color/floral_white"
+            android:textColor="@color/black"
             android:layout_margin="1dp"/>
         <Button
             android:id="@+id/btnRoute2"
@@ -74,8 +77,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Thăng Long thời hiện đại"
-            android:textColor="@color/floral_white"
-            android:backgroundTint="@color/dark_yellow"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/light_gray"
             android:layout_margin="1dp"/>
     </LinearLayout>
     <LinearLayout
@@ -89,9 +92,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/dark_yellow"
+            android:backgroundTint="@color/light_gray"
             android:text="Thủ đô kháng chiến"
-            android:textColor="@color/floral_white"
+            android:textColor="@color/black"
             android:layout_margin="1dp"/>
         <Button
             android:id="@+id/btnRoute4"
@@ -99,8 +102,36 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Trấn Bắc Thành"
-            android:textColor="@color/floral_white"
-            android:backgroundTint="@color/dark_yellow"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/light_gray"
             android:layout_margin="1dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:textColor="@color/floral_white"
+            android:layout_margin="1dp"
+            android:src="@drawable/logo"/>
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="120dp">
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_margin="1dp"/>
+        </ScrollView>
+
     </LinearLayout>
 </LinearLayout>
