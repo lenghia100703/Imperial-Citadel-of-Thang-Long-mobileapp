@@ -1,0 +1,67 @@
+<!-- res/layout/fragment_image_title_description.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/back"
+        android:padding="0dp"/>
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="top|end"
+        android:backgroundTint="@color/dark_brown"
+        android:text="Gửi review"
+        android:padding="0dp"
+        android:textColor="@color/floral_white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:numStars="5"
+                android:stepSize="1.0"
+                android:layout_gravity="top|center" />
+
+            <EditText
+                android:id="@+id/etImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Link image url" />
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="169dp"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:lines="4"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -17,9 +17,12 @@ interface PostService {
     fun getAllPost(@Query("page") page: Int): Call<PaginatedDataDto<PostDto>>
 
     @Multipart
-    @POST("post")
-    fun createPost(@Part("image") image: RequestBody?, @Part("title") title: RequestBody,
+    @POST("post/create-post-by-id")
+    fun createPost(@Part("image") image: RequestBody?,
+                   @Part("id") id: RequestBody,
+                   @Part("title") title: RequestBody,
                    @Part("description") description: RequestBody,
                    @Part("imageUrl") imageUrl: RequestBody,
                    ): Call<CommonResponseDto<PostDto>>
+
 }
