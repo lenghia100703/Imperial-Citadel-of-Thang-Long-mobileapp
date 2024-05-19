@@ -26,7 +26,6 @@
         android:name="com.example.mobileappui.route.Menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#55000000"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/frame_layout"
         app:layout_constraintEnd_toEndOf="@id/frame_layout"

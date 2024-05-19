@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.mobileappui.R
+import com.example.mobileappui.R.*
 import com.example.mobileappui.dtos.common.PaginatedDataDto
 import com.example.mobileappui.dtos.post.PostDto
 import com.example.mobileappui.retrofit.ApiClient
@@ -28,6 +31,7 @@ class ReviewList(i: Int) : Fragment() {
     private lateinit var reviewPosts: List<RelativeLayout>
     private lateinit var buttonLayouts: List<LinearLayout>
     private lateinit var pageButtons: List<Button>
+    private lateinit var returnButton: Button
     private var onPage = i
     private val ps = ApiClient.postService
 
@@ -39,12 +43,15 @@ class ReviewList(i: Int) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_review_list, container, false)
+        val view = inflater.inflate(layout.fragment_review_list, container, false)
 
         reviewPosts = findAllPosts(view)
         buttonLayouts = findLinearLayout(view)
         pageButtons = findButtons(buttonLayouts[0])
-
+        returnButton = view.findViewById<Button>(R.id.back_btn)
+        returnButton.setOnClickListener {
+            replaceFragment(Home())
+        }
         fetchData(onPage)
         for (i in pageButtons.indices) {
             pageButtons[i].setOnClickListener {

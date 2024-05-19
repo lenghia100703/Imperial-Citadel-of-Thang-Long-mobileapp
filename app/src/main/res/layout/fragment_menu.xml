@@ -4,7 +4,7 @@
     android:id="@+id/frame_menuLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"
+    android:background="#55000000"
     tools:context=".route.Menu">
 
     <LinearLayout

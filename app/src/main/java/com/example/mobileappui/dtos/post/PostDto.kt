@@ -10,4 +10,6 @@ data class PostDto(
     val updatedBy: String,
     val createdAt: Date,
     val updatedAt: Date,
+    val description: String,
+    val rating: Int
 )

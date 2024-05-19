@@ -5,14 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
     <Button
-        android:id="@+id/returnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Return"
-        android:backgroundTint="@color/dark_brown"
-        android:layout_gravity="top|start"
-        android:textColor="@color/floral_white"
-        android:layout_marginTop="8dp"/>
+        android:id="@+id/back_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/transparent"
+        android:drawableLeft="@drawable/back"
+        android:padding="0dp"/>
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
@@ -37,7 +37,6 @@
         android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:text="Chào mừng bạn đến với Hoàng thành thăng long"
         android:textSize="24sp"
         android:textStyle="bold" />
     <TextView
@@ -47,7 +46,6 @@
         android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:text="by: Nguyễn Việt Hoàng"
         android:textSize="24sp"
         android:textStyle="bold" />
     <ScrollView
@@ -60,7 +58,6 @@
             android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="  Đây là một bài review chi tiết về Hoàng Thành. \n Tôi đã có trải nghiệm rất tuyệt vời tại đây khi đi cùng với bạn bè vào ngày cuối tuần. \n Ở trên là bức ảnh tôi chụp vào hôm đó. Nhất định sẽ quay trở lại Hoàng Thành Thăng Long"
             android:textSize="16sp" />
     </ScrollView>
 
