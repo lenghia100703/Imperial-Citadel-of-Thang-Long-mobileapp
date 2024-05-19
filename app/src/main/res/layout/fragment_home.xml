@@ -180,6 +180,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="heheehehehheheheehehehe" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
