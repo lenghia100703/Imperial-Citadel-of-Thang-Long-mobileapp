@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
 
             <View
                 android:layout_width="match_parent"
@@ -179,10 +179,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:textSize="16sp"
                     android:text="heheehehehheheheehehehe" />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="60dp"/>
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

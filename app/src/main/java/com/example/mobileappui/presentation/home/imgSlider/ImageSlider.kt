@@ -82,10 +82,11 @@ class ImageSlider : Fragment() {
 
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
-        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer(MarginPageTransformer(10))
         transformer.addTransformer { page, position ->
             val r = 1 - abs(position)
-            page.scaleY = 0.85f + r * 0.15f
+            page.scaleY = 0.65f + r * 0.15f
+            //page.scaleX = 0.9f + r * 0.15f
         }
         viewPager2.setPageTransformer(transformer)
     }
