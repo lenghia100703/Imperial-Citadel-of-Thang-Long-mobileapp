@@ -1,27 +1,26 @@
 package com.example.mobileappui.route
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.mobileappui.MainActivity
 import com.example.mobileappui.R
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.mobileappui.models.TicketViewModel
+import com.example.mobileappui.models.TransactionViewModel
+import com.example.mobileappui.presentation.transaction.TransactionFragment
 
 class BookTicket : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private val transactionViewModel: TransactionViewModel by viewModels()
+    private val ticketViewModel: TicketViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -35,28 +34,35 @@ class BookTicket : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val nameEditText: EditText = view.findViewById(R.id.nameEditText)
-        val phoneEditText: EditText = view.findViewById(R.id.phoneEditText)
-        val ticketQuantityEditText: EditText = view.findViewById(R.id.ticketQuantityEditText)
 
-        val buttonChangeFragment: Button = view.findViewById(R.id.paymentButton)
-        buttonChangeFragment.setOnClickListener {
-            val name = nameEditText.text.toString()
-            val phone = phoneEditText.text.toString()
-            val ticketQuantity = ticketQuantityEditText.text.toString().toInt()
-            replaceFragment(BookedTicket.newInstance(name, phone, ticketQuantity))
-        }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookTicket().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        val viewTransaction: Button = view.findViewById(R.id.viewTransaction)
+        val quantity: EditText = view.findViewById(R.id.quantity)
+        val paymentButton: Button = view.findViewById(R.id.paymentButton)
+        paymentButton.setOnClickListener {
+            if (quantity.text.toString().toLongOrNull() != null) {
+                transactionViewModel.createTransactionByUserId(
+                    quantity.text.toString().toLongOrNull()!!,
+                    {
+                        Toast.makeText(
+                            requireContext(),
+                            "Tạo giao dịch thành công",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    {
+                        Toast.makeText(
+                            requireContext(),
+                            "Tạo giao dịch thất bại!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                )
             }
+        }
+
+        viewTransaction.setOnClickListener {
+            replaceFragment(TransactionFragment())
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {

@@ -15,6 +15,8 @@ import com.example.mobileappui.R
 import com.example.mobileappui.presentation.exhibition.ExhibitionFragment
 import com.example.mobileappui.presentation.home.MainScreen
 import com.example.mobileappui.presentation.home.dropletButtons
+import com.example.mobileappui.presentation.ticket.TicketFragment
+import com.example.mobileappui.presentation.transaction.TransactionFragment
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -73,6 +75,28 @@ class Menu : Fragment() {
         val btn3D = view.findViewById<Button>(R.id.btn3D)
         btn3D.setOnClickListener {
             replaceFragment(ExhibitionFragment())
+            val sendData = Intent(activity, MainScreen::class.java).apply {
+                putExtra("openMenu", false)
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            Log.d("NavBar", "Putting 'openMenu' into Intent")
+            startActivity(sendData)
+        }
+
+        val btnViewTransaction = view.findViewById<Button>(R.id.viewTransaction)
+        btnViewTransaction.setOnClickListener {
+            replaceFragment(TicketFragment())
+            val sendData = Intent(activity, MainScreen::class.java).apply {
+                putExtra("openMenu", false)
+                flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            Log.d("NavBar", "Putting 'openMenu' into Intent")
+            startActivity(sendData)
+        }
+
+        val btnViewTicket = view.findViewById<Button>(R.id.ticketQuantityTextView)
+        btnViewTicket.setOnClickListener {
+            replaceFragment(TransactionFragment())
             val sendData = Intent(activity, MainScreen::class.java).apply {
                 putExtra("openMenu", false)
                 flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
