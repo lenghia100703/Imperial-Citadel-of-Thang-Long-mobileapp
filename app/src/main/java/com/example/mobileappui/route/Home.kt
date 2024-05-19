@@ -35,7 +35,10 @@ class Home : Fragment() {
         val newsService: NewsService = ApiClient.newsService
         newsService.getAllNews(1).enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
             @SuppressLint("MissingInflatedId")
-            override fun onResponse(call: Call<PaginatedDataDto<NewsDto>>, response: Response<PaginatedDataDto<NewsDto>>) {
+            override fun onResponse(
+                call: Call<PaginatedDataDto<NewsDto>>,
+                response: Response<PaginatedDataDto<NewsDto>>
+            ) {
                 if (response.isSuccessful) {
                     val news = response.body()?.data
                     Log.d("News", "These are the news")
@@ -66,6 +69,7 @@ class Home : Fragment() {
                     Log.d("News", "Failed to get news")
                 }
             }
+
             override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
                 Log.d("News", t.message.toString())
             }
@@ -77,14 +81,17 @@ class Home : Fragment() {
         scrollView.viewTreeObserver.addOnScrollChangedListener {
             val maxScroll = scrollView.getChildAt(0).height - scrollView.height
             val currentScroll = scrollView.scrollY
-            progressBar.progress = (currentScroll.toFloat() / maxScroll.toFloat() * progressBar.max).toInt()
+            progressBar.progress =
+                (currentScroll.toFloat() / maxScroll.toFloat() * progressBar.max).toInt()
         }
         return view
     }
+
     fun dpToPx(dp: Int): Int {
         val density = resources.displayMetrics.density
         return (dp * density).roundToInt()
     }
+
     @SuppressLint("CutPasteId")
     private fun createNews(newsItem: NewsDto, layout: LinearLayout) {
         val item = LinearLayout(context)
@@ -99,13 +106,13 @@ class Home : Fragment() {
         val webView = WebView(requireContext())
 
         val webViewParams = LinearLayout.LayoutParams(
-            dpToPx(152),dpToPx(106)
+            dpToPx(152), dpToPx(106)
         )
         webViewParams.setMargins(0, 0, 40, 0)
         webView.layoutParams = webViewParams
 
         webView.settings.setJavaScriptEnabled(true)
-        val htmlContent =   """
+        val htmlContent = """
                                             <html>
                                                 <body style="margin:0;padding:0;">
                                             <img src="${newsItem.image}" alt="Image" style="width:100%;height:100%;"/>
@@ -143,7 +150,7 @@ class Home : Fragment() {
         linearInfo.addView(description)
         item.addView(linearInfo)
 
-        item.setOnClickListener{
+        item.setOnClickListener {
             val article = view?.findViewById<ConstraintLayout>(R.id.newsLayout)
             view?.findViewById<TextView>(R.id.articleTitle)?.text = newsItem.title
             view?.findViewById<TextView>(R.id.articleCreateBy)?.text = newsItem.createdBy
@@ -155,7 +162,7 @@ class Home : Fragment() {
             view?.findViewById<ScrollView>(R.id.allNewsLayout)?.visibility = View.GONE
             view?.findViewById<ScrollView>(R.id.homeView)?.visibility = View.GONE
 
-            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener{
+            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener {
                 //clear the article view
                 view?.findViewById<TextView>(R.id.articleTitle)?.text = ""
                 view?.findViewById<TextView>(R.id.articleCreateBy)?.text = ""

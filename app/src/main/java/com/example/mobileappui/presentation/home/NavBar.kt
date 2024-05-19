@@ -25,18 +25,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import com.example.mobileappui.route.Account
-import com.example.mobileappui.route.BookTicket
-import com.example.mobileappui.route.Home
-import com.example.mobileappui.route.Menu
 import com.example.mobileappui.R
-import com.example.mobileappui.route.Search
 import com.example.mobileappui.colorButtons.BellColorButton
 import com.example.mobileappui.colorButtons.ButtonBackground
 import com.example.mobileappui.databinding.ActivityMainBinding
-import com.example.mobileappui.presentation.viewArticle.News
+import com.example.mobileappui.route.Account
+import com.example.mobileappui.route.BookTicket
+import com.example.mobileappui.route.Home
+import com.example.mobileappui.route.Search
 import com.exyte.animatednavbar.AnimatedNavigationBar
-import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
+import com.exyte.animatednavbar.animation.balltrajectory.Straight
 import com.exyte.animatednavbar.animation.indendshape.Height
 import com.exyte.animatednavbar.items.dropletbutton.DropletButton
 
@@ -61,11 +59,11 @@ class NavBar : Fragment() {
                         .padding(top = 50.dp)
                         .height(58.dp),
                     selectedIndex = selectedItem,
-                    ballColor = darkYellow,
-                    ballAnimation = Parabolic(tween(Duration, easing = LinearOutSlowInEasing)),
+                    ballColor = Color.Transparent,
+                    ballAnimation = Straight(tween(Duration, easing = LinearOutSlowInEasing)),
                     indentAnimation = Height(
-                        indentWidth = 56.dp,
-                        indentHeight = 10.dp,
+                        indentWidth = 0.dp,
+                        indentHeight = 0.dp,
                         animationSpec = tween(
                             DoubleDuration,
                             easing = { OvershootInterpolator().getInterpolation(it) })
@@ -92,6 +90,7 @@ class NavBar : Fragment() {
                                     "Menu" -> {
                                         // Logic xử lý cho Menu, nếu cần
                                     }
+
                                     else -> println("Nothing")
                                 }
 

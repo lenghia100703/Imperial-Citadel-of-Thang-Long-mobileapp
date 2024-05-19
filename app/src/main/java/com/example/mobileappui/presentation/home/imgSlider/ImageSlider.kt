@@ -16,19 +16,18 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mobileappui.R
 import com.example.mobileappui.dtos.banner.BannerDto
-import com.example.mobileappui.dtos.common.PaginatedDataDto
-import com.example.mobileappui.dtos.news.NewsDto
 import com.example.mobileappui.retrofit.ApiClient
 import com.example.mobileappui.services.banner.BannerService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.math.abs
 
-class ImageSlider: Fragment() {
+class ImageSlider : Fragment() {
     private lateinit var viewPager2: ViewPager2
-    private lateinit var indicatorContainer : LinearLayout
-    private lateinit var hander : Handler
+    private lateinit var indicatorContainer: LinearLayout
+    private lateinit var hander: Handler
     private lateinit var imageList: ArrayList<String>
     private lateinit var adapter: ImageAdapter
 
@@ -57,7 +56,8 @@ class ImageSlider: Fragment() {
                 super.onPageSelected(position)
                 for (i in 0 until indicatorContainer.childCount) {
                     val imageView = indicatorContainer.getChildAt(i) as ImageView
-                    val index = if (position >= indicatorContainer.childCount) position % indicatorContainer.childCount else position
+                    val index =
+                        if (position >= indicatorContainer.childCount) position % indicatorContainer.childCount else position
                     imageView.setImageResource(if (i == index) R.drawable.indicator_active else R.drawable.indicator_inactive)
                 }
                 hander.removeCallbacks(runnable)
@@ -70,10 +70,12 @@ class ImageSlider: Fragment() {
         super.onPause()
         hander.removeCallbacks(runnable)
     }
+
     override fun onResume() {
         super.onResume()
         hander.postDelayed(runnable, 2000)
     }
+
     private val runnable = Runnable {
         viewPager2.currentItem = viewPager2.currentItem + 1
     }
@@ -87,32 +89,40 @@ class ImageSlider: Fragment() {
         }
         viewPager2.setPageTransformer(transformer)
     }
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private fun init() {
         viewPager2 = requireView().findViewById(R.id.viewPager2)
         hander = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
-        val bannerService: BannerService = ApiClient.bannerService
-        bannerService.getALlBannerIsActive().enqueue(object : Callback<List<BannerDto>> {
-            override fun onResponse(call: Call<List<BannerDto>>, response: Response<List<BannerDto>>) {
-                if (response.isSuccessful) {
-                    val banners: List<BannerDto> = response.body()!!
-                    for (banner in banners) {
-                        imageList.add(banner.image)
-                    }
-
-                } else {
-                    Log.d("News", "Failed to get news")
+        coroutineScope.launch {
+            val banners = getBanners()
+            if (banners != null) {
+                for (banner in banners) {
+                    imageList.add(banner.image)
                 }
+                viewPager2.offscreenPageLimit = banners.size
+            } else {
+                Log.d("News", "Failed to get news")
             }
-            override fun onFailure(call: Call<List<BannerDto>>, t: Throwable) {
-                Log.d("News", t.message.toString())
-            }
-        })
+        }
         adapter = ImageAdapter(imageList, viewPager2)
         viewPager2.adapter = adapter
-        viewPager2.offscreenPageLimit = 3
+
         viewPager2.clipToPadding = false
         viewPager2.clipChildren = false
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+    }
+
+    private suspend fun getBanners(): List<BannerDto>? {
+        return withContext(Dispatchers.IO) {
+            val bannerService: BannerService = ApiClient.bannerService
+            val response = bannerService.getALlBannerIsActive().execute()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        }
     }
 }

@@ -9,14 +9,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.mobileappui.R
 
-class ImageAdapter(private val imgList : ArrayList<String>, private val viewPager2 : ViewPager2) :
+class ImageAdapter(private val imgList: ArrayList<String>, private val viewPager2: ViewPager2) :
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView);
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.img_container, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.img_container, parent, false)
         return ImageViewHolder(view)
     }
 
@@ -33,6 +34,7 @@ class ImageAdapter(private val imgList : ArrayList<String>, private val viewPage
             viewPager2.post(runnable)
         }
     }
+
     //thêm list ảnh vào
     private val runnable = Runnable {
         imgList.addAll(imgList)

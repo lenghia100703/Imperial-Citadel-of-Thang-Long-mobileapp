@@ -14,7 +14,6 @@ import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.ScrollView
@@ -22,14 +21,12 @@ import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginRight
 import androidx.fragment.app.Fragment
 import com.example.mobileappui.R
 import com.example.mobileappui.dtos.common.PaginatedDataDto
 import com.example.mobileappui.dtos.exhibition.ExhibitionDto
 import com.example.mobileappui.dtos.news.NewsDto
 import com.example.mobileappui.retrofit.ApiClient
-import com.example.mobileappui.services.exhibition.ExhibitionService
 import com.example.mobileappui.services.news.NewsService
 import com.example.mobileappui.services.search.SearchService
 import retrofit2.Call
@@ -40,6 +37,7 @@ class Search : Fragment() {
 
     private val searchService: SearchService = ApiClient.searchService
     private var searchCategory = "news"
+
     @SuppressLint("MissingInflatedId", "UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +48,7 @@ class Search : Fragment() {
 
         val search: EditText = view.findViewById(R.id.search)
         val btnClear: Button = view.findViewById(R.id.btnClear)
-        val watcher = object: TextWatcher {
+        val watcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -81,7 +79,8 @@ class Search : Fragment() {
                     searchExhibition(search, view)
                 }
                 // Đóng bàn phím ảo
-                val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                val inputMethodManager =
+                    activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
                 inputMethodManager?.hideSoftInputFromWindow(search.windowToken, 0)
                 btnClear.visibility = View.GONE
                 // Thoát con trỏ khỏi EditText
@@ -116,7 +115,7 @@ class Search : Fragment() {
             view.findViewById<LinearLayout>(R.id.articleList).removeAllViews()
         }
 
-        hint1.setOnClickListener{
+        hint1.setOnClickListener {
             search.setText(hint1.text)
             btnClear.visibility = View.GONE
             if (searchCategory == "news")
@@ -125,7 +124,7 @@ class Search : Fragment() {
                 searchExhibition(search, view)
 
         }
-        hint2.setOnClickListener{
+        hint2.setOnClickListener {
             search.setText(hint2.text)
             btnClear.visibility = View.GONE
             if (searchCategory == "news")
@@ -140,53 +139,69 @@ class Search : Fragment() {
         scrollView.viewTreeObserver.addOnScrollChangedListener {
             val maxScroll = scrollView.getChildAt(0).height - scrollView.height
             val currentScroll = scrollView.scrollY
-            progressBar.progress = (currentScroll.toFloat() / maxScroll.toFloat() * progressBar.max).toInt()
+            progressBar.progress =
+                (currentScroll.toFloat() / maxScroll.toFloat() * progressBar.max).toInt()
         }
         return view
     }
 
     private fun searchNews(search: EditText, view: View) {
-        searchService.searchNews(1, search.text.toString()).enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
-            override fun onResponse(call: Call<PaginatedDataDto<NewsDto>>, response: Response<PaginatedDataDto<NewsDto>>) {
-                if (response.isSuccessful) {
-                    val news = response.body()?.data
-                    val linearLayout = view.findViewById<LinearLayout>(R.id.articleList)
-                    linearLayout.removeAllViews()
-                    for (newsItem in news!!) {
-                        createNews(newsItem, linearLayout)
+        searchService.searchNews(1, search.text.toString())
+            .enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
+                override fun onResponse(
+                    call: Call<PaginatedDataDto<NewsDto>>,
+                    response: Response<PaginatedDataDto<NewsDto>>
+                ) {
+                    if (response.isSuccessful) {
+                        val news = response.body()?.data
+                        val linearLayout = view.findViewById<LinearLayout>(R.id.articleList)
+                        linearLayout.removeAllViews()
+                        for (newsItem in news!!) {
+                            createNews(newsItem, linearLayout)
+                        }
+                    } else {
+                        Log.d("Search", "Failed to search news")
                     }
-                } else {
-                    Log.d("Search", "Failed to search news")
                 }
-            }
-            override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
-                Log.d("Search", t.message.toString())
-            }
-        })
+
+                override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
+                    Log.d("Search", t.message.toString())
+                }
+            })
     }
+
     private fun searchExhibition(search: EditText, view: View) {
-        searchService.searchExhibition(1, search.text.toString()).enqueue(object : retrofit2.Callback<PaginatedDataDto<ExhibitionDto>> {
-            override fun onResponse(call: Call<PaginatedDataDto<ExhibitionDto>>, response: Response<PaginatedDataDto<ExhibitionDto>>) {
-                if (response.isSuccessful) {
-                    val exhibitions = response.body()?.data
-                    val linearLayout = view.findViewById<LinearLayout>(R.id.articleList)
-                    linearLayout.removeAllViews()
-                    for (exhibition in exhibitions!!) {
-                        createExhibition(exhibition, linearLayout)
+        searchService.searchExhibition(1, search.text.toString())
+            .enqueue(object : retrofit2.Callback<PaginatedDataDto<ExhibitionDto>> {
+                override fun onResponse(
+                    call: Call<PaginatedDataDto<ExhibitionDto>>,
+                    response: Response<PaginatedDataDto<ExhibitionDto>>
+                ) {
+                    if (response.isSuccessful) {
+                        val exhibitions = response.body()?.data
+                        val linearLayout = view.findViewById<LinearLayout>(R.id.articleList)
+                        linearLayout.removeAllViews()
+                        for (exhibition in exhibitions!!) {
+                            createExhibition(exhibition, linearLayout)
+                        }
+                    } else {
+                        Log.d("Search", "Failed to search exhibition")
                     }
-                } else {
-                    Log.d("Search", "Failed to search exhibition")
                 }
-            }
-            override fun onFailure(call: Call<PaginatedDataDto<ExhibitionDto>>, t: Throwable) {
-                Log.d("Search", t.message.toString())
-            }
-        })
+
+                override fun onFailure(call: Call<PaginatedDataDto<ExhibitionDto>>, t: Throwable) {
+                    Log.d("Search", t.message.toString())
+                }
+            })
     }
+
     private fun editNewsHint(hint1: TextView, hint2: TextView) {
         val newsService: NewsService = ApiClient.newsService
         newsService.getAllNews(1).enqueue(object : retrofit2.Callback<PaginatedDataDto<NewsDto>> {
-            override fun onResponse(call: Call<PaginatedDataDto<NewsDto>>, response: Response<PaginatedDataDto<NewsDto>>) {
+            override fun onResponse(
+                call: Call<PaginatedDataDto<NewsDto>>,
+                response: Response<PaginatedDataDto<NewsDto>>
+            ) {
                 if (response.isSuccessful) {
                     val news = response.body()?.data
                     Log.d("News", "These are the news")
@@ -196,11 +211,13 @@ class Search : Fragment() {
                     Log.d("News", "Failed to get news")
                 }
             }
+
             override fun onFailure(call: Call<PaginatedDataDto<NewsDto>>, t: Throwable) {
                 Log.d("News", t.message.toString())
             }
         })
     }
+
     private fun editExhibitionHint(hint1: TextView, hint2: TextView) {
         hint1.text = "Sưu tập bàn chân"
         hint2.text = "Sưu tập bát"
@@ -222,13 +239,13 @@ class Search : Fragment() {
         val webView = WebView(requireContext())
 
         val webViewParams = LinearLayout.LayoutParams(
-            200,200
+            200, 200
         )
         webViewParams.setMargins(0, 0, 30, 0)
         webView.layoutParams = webViewParams
 
         webView.settings.setJavaScriptEnabled(true)
-        val htmlContent =   """
+        val htmlContent = """
                                             <html>
                                                 <body style="margin:0;padding:0;">
                                             <img src="${newsItem.image}" alt="Image" style="width:100%;height:100%;"/>
@@ -265,7 +282,7 @@ class Search : Fragment() {
         linearInfo.addView(description)
         item.addView(linearInfo)
 
-        item.setOnClickListener{
+        item.setOnClickListener {
             val article = view?.findViewById<ConstraintLayout>(R.id.articleLayout)
             view?.findViewById<TextView>(R.id.articleTitle)?.text = newsItem.title
             view?.findViewById<TextView>(R.id.articleCreateBy)?.text = newsItem.createdBy
@@ -274,7 +291,7 @@ class Search : Fragment() {
             view?.findViewById<TextView>(R.id.articleContent)?.text = newsItem.body
             view?.findViewById<LinearLayout>(R.id.searchLayout)?.isEnabled = false
             article?.visibility = View.VISIBLE
-            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener{
+            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener {
                 article?.visibility = View.GONE
             }
         }
@@ -295,13 +312,13 @@ class Search : Fragment() {
         //create to view image and text
         val webView = WebView(requireContext())
         val webViewParams = LinearLayout.LayoutParams(
-            200,200
+            200, 200
         )
         webViewParams.setMargins(0, 0, 30, 0)
         webView.layoutParams = webViewParams
 
         webView.settings.setJavaScriptEnabled(true)
-        val htmlContent =   """
+        val htmlContent = """
                                             <html>
                                                 <body style="margin:0;padding:0;">
                                             <img src="${exhibition.image}" alt="Image" style="width:100%;height:100%;"/>
@@ -339,7 +356,7 @@ class Search : Fragment() {
 
         item.addView(linearInfo)
 
-        item.setOnClickListener{
+        item.setOnClickListener {
             val article = view?.findViewById<ConstraintLayout>(R.id.articleLayout)
             view?.findViewById<TextView>(R.id.articleTitle)?.text = exhibition.name
             view?.findViewById<TextView>(R.id.articleCreateBy)?.text = exhibition.createdBy
@@ -348,7 +365,7 @@ class Search : Fragment() {
             view?.findViewById<TextView>(R.id.articleContent)?.text = exhibition.description
             view?.findViewById<LinearLayout>(R.id.searchLayout)?.isEnabled = false
             article?.visibility = View.VISIBLE
-            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener{
+            view?.findViewById<Button>(R.id.articleExit)?.setOnClickListener {
                 article?.visibility = View.GONE
             }
         }
