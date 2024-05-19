@@ -28,7 +28,7 @@
             android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đổi mật khẩu"
+            android:text="Đổi thông tin"
             android:layout_marginTop="5dp"
             android:textAlignment="center"
             android:textColor="@color/dark_yellow"
@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Thay đổi thông tin"
+                android:text="Lưu lại"
                 android:id="@+id/registerButton"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
