@@ -136,7 +136,7 @@ class Home : Fragment() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         title.text = newsItem.title
-        title.textSize = 22f
+        title.textSize = 18f
         title.setTypeface(null, Typeface.BOLD)
         linearInfo.addView(title)
 

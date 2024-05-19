@@ -245,14 +245,32 @@ class Search : Fragment() {
         webView.layoutParams = webViewParams
 
         webView.settings.setJavaScriptEnabled(true)
-        val htmlContent = """
-                                            <html>
-                                                <body style="margin:0;padding:0;">
-                                            <img src="${newsItem.image}" alt="Image" style="width:100%;height:100%;"/>
-                                                </body>
-                                            </html>
-                                            """
-        webView.loadData(htmlContent, "text/html", "UTF-8")
+        val htmlData = """
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: contain;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="${newsItem.image}" alt="Exhibition Image">
+                    </body>
+                    </html>
+                """.trimIndent()
+        webView.loadData(htmlData, "text/html", "UTF-8")
 
         item.addView(webView)
 
@@ -269,7 +287,7 @@ class Search : Fragment() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         title.text = newsItem.title
-        title.textSize = 20f
+        title.textSize = 18f
         title.setTypeface(null, Typeface.BOLD)
         linearInfo.addView(title)
 
@@ -318,14 +336,32 @@ class Search : Fragment() {
         webView.layoutParams = webViewParams
 
         webView.settings.setJavaScriptEnabled(true)
-        val htmlContent = """
-                                            <html>
-                                                <body style="margin:0;padding:0;">
-                                            <img src="${exhibition.image}" alt="Image" style="width:100%;height:100%;"/>
-                                                </body>
-                                            </html>
-                                            """
-        webView.loadData(htmlContent, "text/html", "UTF-8")
+        val htmlData = """
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body, html {
+                                margin: 0;
+                                padding: 0;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: contain;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="${exhibition.image}" alt="Exhibition Image">
+                    </body>
+                    </html>
+                """.trimIndent()
+        webView.loadData(htmlData, "text/html", "UTF-8")
 
         item.addView(webView)
 
@@ -342,7 +378,7 @@ class Search : Fragment() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         title.text = exhibition.name
-        title.textSize = 20f
+        title.textSize = 18f
         title.setTypeface(null, Typeface.BOLD)
         linearInfo.addView(title)
 
