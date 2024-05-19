@@ -38,7 +38,6 @@
                 android:numStars="5"
                 android:stepSize="1.0"
                 android:layout_gravity="top|center" />
-
             <EditText
                 android:id="@+id/etImage"
                 android:layout_width="match_parent"
@@ -61,7 +60,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>
