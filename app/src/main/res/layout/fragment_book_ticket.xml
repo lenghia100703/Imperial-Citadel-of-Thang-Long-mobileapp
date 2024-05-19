@@ -30,11 +30,11 @@
                 android:layout_marginBottom="8dp"/>
 
             <EditText
-                android:id="@+id/nameCustomer"
+                android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập họ vè tên"
-                android:inputType="phone" />
+                android:inputType="text" />
 
             <View
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <EditText
-                android:id="@+id/phoneNumber"
+                android:id="@+id/phoneEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập số điện thoại"
@@ -71,7 +71,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <EditText
-                android:id="@+id/ticketQuantity"
+                android:id="@+id/ticketQuantityEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập số lượng vé"
@@ -99,24 +99,28 @@
                 android:id="@+id/extraServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checkedButton="@id/service1"
                 android:orientation="vertical">
 
                 <RadioButton
                     android:id="@+id/service1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:text="Hướng đẫn viên tiếng Việt"/>
 
                 <RadioButton
                     android:id="@+id/service2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:text="Hướng dẫn viên tiếng Anh"/>
 
                 <RadioButton
                     android:id="@+id/service3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:text="Hướng dẫn viên song ngữ"/>
             </RadioGroup>
 
@@ -127,15 +131,17 @@
             <!-- Nút Thanh toán và Xem vé đã đặt -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="100dp"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="top">
 
                 <Button
                     android:id="@+id/paymentButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/yellow"
+                    android:textColor="@android:color/white"
                     android:text="Thanh toán"/>
 
                 <!-- Khoảng cách giữa hai nút -->
@@ -148,6 +154,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/yellow"
+                    android:textColor="@android:color/white"
                     android:text="Xem vé đã đặt"/>
             </LinearLayout>
         </LinearLayout>
