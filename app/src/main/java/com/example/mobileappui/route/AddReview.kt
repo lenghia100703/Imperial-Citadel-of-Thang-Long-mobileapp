@@ -77,7 +77,7 @@ class AddReview<File> : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 })
-
+            replaceFragment(ReviewList(0))
         }
         return view
     }

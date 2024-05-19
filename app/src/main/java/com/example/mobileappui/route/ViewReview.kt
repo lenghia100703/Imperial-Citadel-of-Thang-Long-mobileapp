@@ -91,7 +91,6 @@ class ViewReview(onPage: Int) : Fragment() {
                 val author = data[onPage].createdBy
                 val title = data[onPage].title
                 val imageUrl = data[onPage].image
-
                 val desc = data[onPage].description
                 val rating = data[onPage].rating
                 layout = postLayouts[0]
